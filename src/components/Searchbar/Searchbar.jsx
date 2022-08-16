@@ -1,19 +1,27 @@
 import React, { Component } from "react";
+import { ImSearch } from 'react-icons/im'
+import { toast } from 'react-toastify'
+import PropTypes from 'prop-types'
+import { Header, Form, FormButton, FormInput } from './Searchbar.styled'
 
 export class Searchbar extends Component {
+    static propTypes = {
+        onSubmit: PropTypes.func.isRequired,
+    }
     state = {
         name: "",
     }
 
     handleNameChange = (e) => {
-        console.log('e.target', e.target)
         this.setState({ name: e.target.value })
     }
 
     submitForm = (e) => {
         e.preventDefault()
         if (this.state.name.trim() === '') {
-            alert("Введите запрос")
+            toast.warn("Please enter a request", {
+                theme: "colored",
+            })
         }
 
         this.props.onSubmit(this.state.name);
@@ -26,22 +34,23 @@ export class Searchbar extends Component {
 
     render() {
         return (
-            <header className="searchbar">
-                <form className="form" onSubmit={this.submitForm}>
-                    <button type="submit" className="button">
-                        <span className="button-label">Search</span>
-                    </button>
+            <Header className="searchbar">
+                <Form className="form" onSubmit={this.submitForm}>
+                    <FormButton type="submit" className="button">
+                        <ImSearch style={{ width: 20, height: 20 }} />
+                    </FormButton>
 
-                    <input
+                    <FormInput
                         className="input"
                         type="text"
                         autoComplete="off"
                         autoFocus
                         placeholder="Search images and photos"
+                        value={this.state.name}
                         onChange={this.handleNameChange}
                     />
-                </form>
-            </header>
+                </Form>
+            </Header>
         )
     }
 }
