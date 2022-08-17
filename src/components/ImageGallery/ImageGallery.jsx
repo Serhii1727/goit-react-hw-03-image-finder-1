@@ -4,6 +4,7 @@ import ImageGalleryItem from 'components/ImageGalleryItem'
 import { ImageGalleryList, Title } from './ImageGallery.styled'
 import { KEY } from '../api/api.js'
 import { Loader } from '../Loader/Loader'
+import Modal from 'components/Modal'
 
 export class ImageGallery extends Component {
     static propTypes = {
@@ -12,7 +13,8 @@ export class ImageGallery extends Component {
 
     state = {
         arrayImage: [],
-        status: 'idle'
+        status: 'idle',
+        showModal: false,
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -41,7 +43,12 @@ export class ImageGallery extends Component {
 
     render() {
 
-        const { arrayImage, status } = this.state;
+        const { arrayImage, status, showModal } = this.state;
+
+        if (showModal) {
+            return <Modal />
+        }
+
 
         if (status === 'idle') {
             return <Title>Введите запрос в поисковую строку</Title>
@@ -61,7 +68,6 @@ export class ImageGallery extends Component {
                     <ImageGalleryItem tags={tags} webformatURL={webformatURL} key={id} />)}
             </ImageGalleryList>
         }
-
 
 
     }
