@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ImageGalleryList = styled.ul`
-    display: grid;
+  display: grid;
   max-width: calc(100vw - 48px);
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   grid-gap: 16px;
@@ -11,4 +11,10 @@ export const ImageGalleryList = styled.ul`
   list-style: none;
   margin-left: auto;
   margin-right: auto;
+`
+
+export const Title = styled.h2`
+width: 500px;
+margin-left: auto;
+margin-right: auto;
 `
