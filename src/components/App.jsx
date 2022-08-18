@@ -3,8 +3,6 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Searchbar from "./Searchbar";
 import ImageGallery from "./ImageGallery";
-import Modal from "./Modal";
-
 
 export class App extends Component {
   state = {
